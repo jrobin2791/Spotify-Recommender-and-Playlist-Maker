@@ -471,7 +471,8 @@ while True:
             # Convert the total list to a set of unique genres
             unique_genres = set(unique_genres)
             # Remove the null value in this set
-            unique_genres.remove(np.nan)
+            if np.nan in unique_genres:
+                unique_genres.remove(np.nan)
 
 
             # Consolidate all the genre information into simple genre columns
