@@ -405,7 +405,13 @@ while True:
             # Loop through each dictionary in the list
             for i in range(len(rec_list)):
                 # Store the song title in the dicionary
-                track_features_list[i]['name'] = rec_list[i]['name']
+                try:
+                    track_features_list[i]['name'] = rec_list[i]['name']
+                except:
+                    # Exit if no song found
+                    print('Sorry, Spotify has run out of recommendations!')
+                    print('To get more recommendations, you may need to broaden your search.')
+                    break
                 # Store the artist in the dicionary
                 track_features_list[i]['artist'] = rec_list[i]['artists'][0]['name']
                 # Store the popularity rating in the dicionary
@@ -436,7 +442,10 @@ while True:
 
 
             # Create a dataframe from the list of dictionaries
-            tracks_df = pd.DataFrame(full_track_features_list)
+            try:
+                tracks_df = pd.DataFrame(full_track_features_list)
+            except:
+                break
             # Drop duplicate songs
             tracks_df.drop_duplicates(subset='name', inplace=True)
             # Make the song names the index
