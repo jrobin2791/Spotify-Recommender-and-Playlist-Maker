@@ -25,7 +25,7 @@ scope = 'user-read-private user-read-playback-state user-modify-playback-state p
 try:
     token = util.prompt_for_user_token(username, scope)
 except:
-    os.remove(f'.cache-{username}')
+    os.remove(f'.cache-{username, scope}')
     token = util.prompt_for_user_token(username, scope)
 
 # create our Spotify object with permissions
@@ -716,6 +716,7 @@ while True:
 
     # End the program
     elif choice == '2':
+        os.remove(f'.cache-{username}')
         break
 
     # Accounting for invalid entries
